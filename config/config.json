@@ -1,0 +1,22 @@
+{
+  "service": {
+    "name": "Shrink Images",
+    "homepage": "https://shrinkimages.com",
+    "contact": "hello@shrinkimages.com",
+    "privacyPolicy": "https://shrinkimages/com/privacy",
+    "termsOfService": "https://shrinkimages.com/terms",
+    "apiKey": "shrink-qbS/hHOB0mRzd5VAwTKnIcDy4t++iow0",
+    "maxUploadSize": 50,
+    "maxAllowedWidth": 10000,
+    "maxAllowedHeight": 10000
+  },
+  "server": {
+    "address": ":1997",
+    "pid": "/home/james/.local/src/jamesponddotco/shrinkimages/config/shrinkimages.pid",
+    "tls": {
+      "certificate": "/home/james/.local/src/jamesponddotco/shrinkimages/config/localhost.pem",
+      "key": "/home/james/.local/src/jamesponddotco/shrinkimages/config/localhost-key.pem",
+      "version": "1.3"
+    }
+  }
+}

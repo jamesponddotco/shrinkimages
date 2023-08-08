@@ -1,0 +1,22 @@
+{
+  "service": {
+    "name": "Shrink Images",
+    "homepage": "https://shrinkimages.com",
+    "contact": "hello@shrinkimages.com",
+    "privacyPolicy": "https://shrinkimages/com/privacy",
+    "termsOfService": "https://shrinkimages.com/terms",
+    "apiKey": "your-api-key",
+    "maxUploadSize": 50,
+    "maxAllowedWidth": 10000,
+    "maxAllowedHeight": 10000
+  },
+  "server": {
+    "address": ":1997",
+    "pid": "/var/run/shrinkimages.pid",
+    "tls": {
+      "certificate": "/path/to/certificate.pem",
+      "key": "/path/to/key.pem",
+      "version": "1.3"
+    }
+  }
+}
