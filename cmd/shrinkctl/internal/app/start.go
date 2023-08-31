@@ -10,7 +10,6 @@ import (
 	"git.sr.ht/~jamesponddotco/shrinkimages/internal/config"
 	"git.sr.ht/~jamesponddotco/shrinkimages/internal/server"
 	"git.sr.ht/~jamesponddotco/xstd-go/xerrors"
-	"github.com/urfave/cli/v2"
 	"go.uber.org/zap"
 )
 
@@ -18,8 +17,12 @@ import (
 const ErrServerRunning xerrors.Error = "server is already running"
 
 // StartAction is the action for the start command.
-func StartAction(ctx *cli.Context) error {
-	cfg, err := config.LoadConfig(ctx.String("config"))
+func StartAction(configPath string) error {
+	if configPath == "" {
+		return fmt.Errorf("%w", ErrConfigPathRequired)
+	}
+
+	cfg, err := config.LoadConfig(configPath)
 	if err != nil {
 		return fmt.Errorf("%w", err)
 	}
