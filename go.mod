@@ -1,6 +1,6 @@
 module git.sr.ht/~jamesponddotco/shrinkimages
 
-go 1.20
+go 1.21
 
 require (
 	git.sr.ht/~jamesponddotco/httpx-go v0.0.0-20230516151239-08a439b40481
