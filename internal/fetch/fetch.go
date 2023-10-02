@@ -18,8 +18,13 @@ import (
 	"golang.org/x/time/rate"
 )
 
-// ErrFetchData is returned when the client fails to fetch data from a URL.
-const ErrFetchData xerrors.Error = "failed to fetch data"
+const (
+	// ErrFetchData is returned when the client fails to fetch data from a URL.
+	ErrFetchData xerrors.Error = "failed to fetch data"
+
+	// ErrInvalidProtocol is returned when the protocol of a URL is invalid.
+	ErrInvalidProtocol xerrors.Error = "invalid protocol; must be https"
+)
 
 // Client represents a client that can fetch data from a URL.
 type Client struct {
@@ -46,6 +51,15 @@ func New(serviceName, serviceEmail string) *Client {
 // Remote fetches data from a URL, optimizes it to reduce its size, and returns
 // it as a byte slice.
 func (c *Client) Remote(ctx context.Context, uri string) (data []byte, filename string, err error) {
+	u, err := url.Parse(uri)
+	if err != nil {
+		return nil, "", fmt.Errorf("%w: %w", ErrFetchData, err)
+	}
+
+	if u.Scheme != "https" {
+		return nil, "", fmt.Errorf("%w: %s", ErrInvalidProtocol, u.Scheme)
+	}
+
 	resp, err := c.httpc.Get(ctx, uri)
 	if err != nil {
 		return nil, "", fmt.Errorf("%w: %w", ErrFetchData, err)
